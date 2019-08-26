@@ -182,7 +182,7 @@ if($show=="m3u")
 			{
         $titems=$this->getJson("all");
         $slhttp = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-        $url=$slhttp.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+        $url=$slhttp.$_SERVER['SERVER_NAME'].str_replace($_SERVER["QUERYSTRING"],"",$_SERVER["REQUEST_URI"]);
         foreach($titems as $titem)
         {
           $addr=$url.$titem["name"]."/";
@@ -196,7 +196,7 @@ if($show=="m3u")
                 foreach($tit["items"] as $mu)
                 {
                   $addrc=$addrb.$mu["name"];
-                  array_push($pitems,$addrc);
+                  array_push($pitems,urlencode($addrc));
                 }
              }
           }

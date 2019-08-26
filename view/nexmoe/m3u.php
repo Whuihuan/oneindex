@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: text/plan;charset=utf-8');
+header('Content-Type: text/plain;charset=utf-8');
 header('Access-Control-Allow-Origin:*'); // *代表允许任何网址请求
 header('Access-Control-Allow-Methods:POST,GET,OPTIONS,DELETE'); // 允许请求的类型
 header('Access-Control-Allow-Credentials: true'); // 设置是否允许发送 cookies
