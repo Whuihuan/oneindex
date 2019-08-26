@@ -177,6 +177,7 @@ class IndexController{
 	
 	function getJson($show="file",$gpath="",$ref=false)
 	{
+			$pitems=array();
 if($show=="m3u")
 			{
         $titems=$this->getJson("all");
@@ -204,7 +205,6 @@ if($show=="m3u")
           return $pitems;
           }
 		$gpath = ($gpath=="") ? $this->path : $gpath;
-		$pitems=array();
         $items = ($ref) ? $this->items($gpath) : $this->items;
         // 如果存在隐藏文件，则不显示该文件夹的内容
         if($items["hidden"])
