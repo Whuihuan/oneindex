@@ -196,7 +196,7 @@ if($show=="m3u")
                 foreach($tit["items"] as $mu)
                 {
                   $addrc=$addrb.$mu["name"];
-                  array_push($pitems,urlencode($addrc));
+                  array_push($pitems,rawurlencode($addrc));
                 }
              }
           }
