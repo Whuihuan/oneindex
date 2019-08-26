@@ -1,8 +1,8 @@
 <?php
-header('Content-Type: text/json;charset=utf-8');
-header('Access-Control-Allow-Origin:*'); // *´ú±íÔÊÐíÈÎºÎÍøÖ·ÇëÇó
-header('Access-Control-Allow-Methods:POST,GET,OPTIONS,DELETE'); // ÔÊÐíÇëÇóµÄÀàÐÍ
-header('Access-Control-Allow-Credentials: true'); // ÉèÖÃÊÇ·ñÔÊÐí·¢ËÍ cookies
-header('Access-Control-Allow-Headers: Content-Type,Content-Length,Accept-Encoding,X-Requested-with, Origin'); // ÉèÖÃÔÊÐí×Ô¶¨ÒåÇëÇóÍ·µÄ×Ö¶Î
-echo $items;
+header('Content-Type: text/plan;charset=utf-8');
+header('Access-Control-Allow-Origin:*'); // *ä»£è¡¨å…è®¸ä»»ä½•ç½‘å€è¯·æ±‚
+header('Access-Control-Allow-Methods:POST,GET,OPTIONS,DELETE'); // å…è®¸è¯·æ±‚çš„ç±»åž‹
+header('Access-Control-Allow-Credentials: true'); // è®¾ç½®æ˜¯å¦å…è®¸å‘é€ cookies
+header('Access-Control-Allow-Headers: Content-Type,Content-Length,Accept-Encoding,X-Requested-with, Origin'); // è®¾ç½®å…è®¸è‡ªå®šä¹‰è¯·æ±‚å¤´çš„å­—æ®µ
+echo implode("\n",$items);
 ?>
