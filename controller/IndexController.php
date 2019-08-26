@@ -243,7 +243,6 @@ if($show=="m3u")
                     array_push($sitems,$tmparr);
                 }
                 $subitems["items"]=$sitems;
-			}
         }
             array_push($pitems,$subitems);
 		}
