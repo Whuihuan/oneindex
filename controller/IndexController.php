@@ -177,6 +177,32 @@ class IndexController{
 	
 	function getJson($show="file",$gpath="",$ref=false)
 	{
+if($show=="m3u")
+			{
+        $titems=$this->getJson("all");
+        $slhttp = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+        $url=$slhttp.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+        foreach($titems as $titem)
+        {
+          $addr=$url.$titem["name"]."/";
+          if(isset($titem["items"]))
+          {
+            foreach($titem["items"] as $tit)
+            {
+              $addrb=$addr.$tit["name"]."/";
+              if(isset($tit["items"]))
+              {
+                foreach($tit["items"] as $mu)
+                {
+                  $addrc=$addrb.$mu["name"];
+                  array_push($pitems,$addrc);
+                }
+             }
+          }
+            }
+          }
+          return $pitems;
+          }
 		$gpath = ($gpath=="") ? $this->path : $gpath;
 		$pitems=array();
         $items = ($ref) ? $this->items($gpath) : $this->items;
@@ -201,7 +227,7 @@ class IndexController{
                     array_push($sitems,$tmparr);
                 }
                 $subitems["items"]=$sitems;
-			}
+            }
 			else if($show == "all")
 			{
                 // 非文件夹不显示
@@ -218,33 +244,7 @@ class IndexController{
                 }
                 $subitems["items"]=$sitems;
 			}
-			else if($show=="m3u")
-			{
-        $titems=$this->getJson("all");
-        $slhttp = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
-        $url=$slhttp.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
-        foreach($titems as $titem)
-        {
-          $addr=$url.$titem["name"]."/";
-          if(isset($titem["items"]))
-          {
-            foreach($titem["items"] as $tit)
-            {
-              $addrb=$addr.$tit["name"]."/";
-              if(isset($tit["items"]))
-              {
-                foreach($tit["items"] as $mu)
-                {
-                  $addrc=$addrb.$mu["name"];
-                  array_push($pitems,$addrc);
-                }
-             }
-          }
-            }
-          }
         }
-        return $pitems;
-			}
             array_push($pitems,$subitems);
 		}
 		return $pitems;
